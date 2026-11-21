@@ -2,7 +2,7 @@
 
 数维杯 C 题第一问研究补货操作中的手部运动和观测可靠性。在一个预测起点，模型根据截至该帧的历史观测，为每只手给出未来约 1 秒的 30 个腕部三维坐标和 30 个预测半径。
 
-本目录公开模型源码、同窗口的比较结果及复算程序。原始视频、原始关键点、官方索引、训练缓存和模型权重保存在本地。公开逐窗口表只含匿名窗口编号、匿名环境分组、转向标签和评测指标。
+本目录提供模型源码、同窗口的比较结果及复算程序。逐窗口表采用匿名窗口编号和环境分组，保留转向标签与评测指标。三个原始数据压缩包另附文件大小和 SHA-256，见[原始数据发布页](https://github.com/xwjgn/Experience/releases/tag/shuweicup-q1-data-v1)。
 
 ## 同一批窗口上的比较
 
@@ -48,7 +48,7 @@ python summarize_results.py --check
 
 实际训练环境为 Python 3.12、PyTorch 2.8.0（CUDA 12.8）。核心数值库版本见 [requirements.txt](requirements.txt)。各阶段按相对目录读取本地材料。
 
-- `Restocking_Problem_and_Data_EN/Raw_Data/` 放置正当取得的 EgoDemo、EgoPro、EgoStandard 三个原始压缩包。
+- 下载三个附件，保留原文件名，放入 `Restocking_Problem_and_Data_EN/Raw_Data/`。[EgoDemo.zip](https://github.com/xwjgn/Experience/releases/download/shuweicup-q1-data-v1/EgoDemo.zip) · [EgoPro.zip](https://github.com/xwjgn/Experience/releases/download/shuweicup-q1-data-v1/EgoPro.zip) · [EgoStandard.zip](https://github.com/xwjgn/Experience/releases/download/shuweicup-q1-data-v1/EgoStandard.zip)
 - `Restocking_Problem_and_Data_EN/Restocking_Tasks_and_Constraints/` 包含本地的 `record_split.csv` 和 `source_segment_index.csv`。
 - `分析报告/` 保存本地训练产物和冻结配置。训练依次采用 M4、起点风险、腕部位移融合、贝叶斯增益各阶段的实验入口。完整历史对照的评分代码还会读取先前实验的本地输出，部分早期 QSM/LSTTN 实验另需其源码指定的作者仓库快照。
 - 主方案实验读取独立 M4 已给出的预测值，重新拟合腕部位移与低风险模型，并从随机初始化训练贝叶斯增益网络。
